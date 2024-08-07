@@ -1,0 +1,9 @@
+sequenceDiagram
+    Client -->> Server: Get https://studies.cs.helsinki.fi/exampleapp/spa
+    Server -->> Client: The HTML Document
+    Client -->> Server: Get https://studies.cs.helsinki.fi/exampleapp/main.css
+    Server -->> Client: The CSS File
+    Client -->> Server: Get https://studies.cs.helsinki.fi/exampleapp/spa.js
+    Server -->> Client: The JS File
+    Client -->> Server: Get https://studies.cs.helsinki.fi/exampleapp/data.json
+    Server -->> Client: The JSON File
