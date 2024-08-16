@@ -41,10 +41,11 @@ const App = () => {
                         setNewNumber('')
                         setNotifyMessage(`Changed ${res.name} number`)
                         setTimeout(() => setNotifyMessage(null), 5000)
-                    }).catch(error => {
-                        setErrorMessage(`Information of ${existedPerson.name} has already been removed from server`)
+                    })
+                    .catch(err => {
+                        setErrorMessage(err.response.data.error)
                         setTimeout(() => setErrorMessage(null), 5000)
-                })
+                    })
                 return
             }
             else {
@@ -60,13 +61,17 @@ const App = () => {
                 setNotifyMessage(`Added ${response.name}`)
                 setTimeout(() => setNotifyMessage(null), 5000)
             })
+            .catch(err =>{
+                setErrorMessage(err.response.data.error)
+                setTimeout(() => setErrorMessage(null), 5000)
+            })
 
     }
 
     const handleDeleteOf = id => {
         if (confirm(`Delete ${persons.find(p => p.id === id).name}?`)) {
             personsService.deletePerson(id)
-                .then(res => setPersons(persons.filter(p => p.id !== res.id)))
+                .then(res => setPersons(persons.filter(p => p.id !== id)))
         }
     }
     return (
